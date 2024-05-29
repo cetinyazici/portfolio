@@ -13,6 +13,7 @@ namespace portfolio.Controllers
             _logger = logger;
         }
 
+        //deneme
         public IActionResult Index()
         {
             return View();

@@ -13,13 +13,13 @@ namespace EntityLayer.Concrete
         public int AboutId { get; set; }
         public string? Title { get; set; }
         public string? Subtitle { get; set; }
-        public string? Description { get; set; }
+        public string? Description1 { get; set; }
+        public string? Description2 { get; set; }
         public string? Name { get; set; }
-        public string? Life { get; set; }
+        public string? City { get; set; }
         public string? Mail { get; set; }
         public string? Phone { get; set; }
         public string? LinkedinUrl { get; set; }
         public string? GithubUrl { get; set; }
-        public string? CvUrl { get; set; }
     }
 }

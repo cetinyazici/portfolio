@@ -1,16 +1,23 @@
 using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules.Contact;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using DToLayer.ContactDtos;
 using EntityLayer.Concrete;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddFluentValidation();
+
+// FluentValidation kurallarýný kaydedin
+builder.Services.AddTransient<IValidator<SendMessageDto>, SendContactValiator>();
 
 builder.Services.AddDbContext<Context>();
 
@@ -29,6 +36,8 @@ builder.Services.AddScoped<IPortfolioDal, EfPortfolioDal>();
 builder.Services.AddScoped<IPortfolioDetailsDal, EfPortfolioDetailsDal>();
 builder.Services.AddScoped<IServicesDal, EfServicesDal>();
 builder.Services.AddScoped<ISkillsDal, EfSkillsDal>();
+
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 

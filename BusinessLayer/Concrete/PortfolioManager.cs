@@ -13,6 +13,11 @@ namespace BusinessLayer.Concrete
     {
         private readonly IPortfolioDal _portfolioDal;
 
+        public PortfolioManager(IPortfolioDal portfolioDal)
+        {
+            _portfolioDal = portfolioDal;
+        }
+
         public void TDelete(Portfolio t)
         {
             _portfolioDal.Delete(t);

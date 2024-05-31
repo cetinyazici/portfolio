@@ -12,6 +12,12 @@ namespace BusinessLayer.Concrete
     public class PortfolioDetailsManager : IPortfolioDetailsService
     {
         private readonly IPortfolioDetailsDal _portfolioDetailsDal;
+
+        public PortfolioDetailsManager(IPortfolioDetailsDal portfolioDetailsDal)
+        {
+            _portfolioDetailsDal = portfolioDetailsDal;
+        }
+
         public void TDelete(PortfolioDetails t)
         {
             _portfolioDetailsDal.Delete(t);

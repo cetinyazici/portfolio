@@ -12,6 +12,12 @@ namespace BusinessLayer.Concrete
     public class AboutManager : IAboutService
     {
         private readonly IAboutDal _aboutDal;
+
+        public AboutManager(IAboutDal aboutDal)
+        {
+            _aboutDal = aboutDal;
+        }
+
         public void TDelete(About t)
         {
             _aboutDal.Delete(t);

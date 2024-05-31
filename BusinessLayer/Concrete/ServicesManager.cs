@@ -12,6 +12,12 @@ namespace BusinessLayer.Concrete
     public class ServicesManager : IServicesService
     {
         private readonly IServicesDal _servicesDal;
+
+        public ServicesManager(IServicesDal servicesDal)
+        {
+            _servicesDal = servicesDal;
+        }
+
         public void TDelete(Services t)
         {
             _servicesDal.Delete(t);

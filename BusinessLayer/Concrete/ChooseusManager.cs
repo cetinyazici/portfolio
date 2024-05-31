@@ -12,6 +12,12 @@ namespace BusinessLayer.Concrete
     public class ChooseusManager : IChooseusService
     {
         private readonly IChooseusDal _chooseusDal;
+
+        public ChooseusManager(IChooseusDal chooseusDal)
+        {
+            _chooseusDal = chooseusDal;
+        }
+
         public void TDelete(Chooseus t)
         {
             _chooseusDal.Delete(t);

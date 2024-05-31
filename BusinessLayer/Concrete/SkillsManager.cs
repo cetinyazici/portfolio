@@ -12,6 +12,12 @@ namespace BusinessLayer.Concrete
     public class SkillsManager : ISkillsService
     {
         private readonly ISkillsDal _skillsDal;
+
+        public SkillsManager(ISkillsDal skillsDal)
+        {
+            _skillsDal = skillsDal;
+        }
+
         public void TDelete(Skills t)
         {
             _skillsDal.Delete(t);

@@ -17,7 +17,7 @@ namespace portfolio.ViewComponents.Default
         public IViewComponentResult Invoke()
         {
             var values = _aboutService.TGetList();
-            return View();
+            return View(values);
         }
     }
 }

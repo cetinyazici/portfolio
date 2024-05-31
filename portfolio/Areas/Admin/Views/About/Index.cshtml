@@ -9,38 +9,44 @@
     About Page
 </h1>
 <div class="text-center my-3">
-    <a href="/Default/Index" target="_blank" class="btn btn-primary">See on site</a>
+    <a href="/Default/Index" target="_blank" class="btn btn-primary">
+        <i class="bi bi-globe"></i>
+        See on site
+    </a>
 </div>
 <div class="table-responsive">
-    <table class="table table-bordered">
+    <table class="table table-bordered table-hover">
         <thead class="thead-dark">
             <tr>
-                <th>UPDATE</th>
                 <th>Title</th>
-                <th>Subtitle</th>
-                <th>Description1</th>
-                <th>Description2</th>
                 <th>Name</th>
                 <th>City</th>
                 <th>Mail</th>
                 <th>Phone</th>
+                <th>Subtitle</th>
+                <th>Description1</th>
+                <th>Description2</th>
+                <th>UPDATE</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
-                        <a href="/Admin/About/UpdateAbout/@item.AboutId" class="btn btn-success">Güncelle</a>
-                    </td>
                     <td>@item.Title</td>
-                    <td>@item.Subtitle</td>
-                    <td>@item.Description1</td>
-                    <td>@item.Description2</td>
                     <td>@item.Name</td>
                     <td>@item.City</td>
                     <td>@item.Mail</td>
                     <td>@item.Phone</td>
+                    <td>@item.Subtitle</td>
+                    <td>@item.Description1</td>
+                    <td>@item.Description2</td>
+                    <td>
+                        <a href="/Admin/About/UpdateAbout/@item.AboutId" class="btn btn-success">
+                            <i class="bi bi-pencil"></i>
+                            UPDATE
+                        </a>
+                    </td>
                 </tr>
             }
         </tbody>

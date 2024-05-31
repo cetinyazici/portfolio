@@ -1,6 +1,7 @@
 using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules.Contact;
+using BusinessLayer.ValidationRules.Portfolios;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
@@ -18,6 +19,7 @@ builder.Services.AddControllersWithViews().AddFluentValidation();
 
 // FluentValidation kurallarýný kaydedin
 builder.Services.AddTransient<IValidator<SendMessageDto>, SendContactValiator>();
+builder.Services.AddTransient<IValidator<Portfolio>, PortfolioValid>();
 
 builder.Services.AddDbContext<Context>();
 

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace portfolio.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Route("Admin/About")]
     public class AboutController : Controller
     {
         private readonly IAboutService _aboutService;
@@ -14,12 +15,14 @@ namespace portfolio.Areas.Admin.Controllers
             _aboutService = aboutService;
         }
 
+        [Route("Index")]
         public IActionResult Index()
         {
             var values = _aboutService.TGetList();
             return View(values);
         }
 
+        [Route("UpdateAbout/{id}")]
         [HttpGet]
         public IActionResult UpdateAbout(int id)
         {
@@ -27,6 +30,7 @@ namespace portfolio.Areas.Admin.Controllers
             return View(values);
         }
 
+        [Route("UpdateAbout/{id}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult UpdateAbout(About about)

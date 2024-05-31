@@ -1,0 +1,55 @@
+﻿@model List<Portfolio>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="text-center">
+    <i class="bi bi-briefcase"></i>
+    Portfolio Page
+</h1>
+<div class="my-3">
+    <a href="/Admin/Portfolio/AddPortfolio" class="btn btn-primary">
+        <i class="bi bi-arrow-up"></i>
+        ADD NEW
+    </a>
+</div>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>ImageUrl</th>
+                <th>Description</th>
+                <th>TYPE</th>
+                <th>UPDATE</th>
+                <th>REMOVE</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.GalleryId</td>
+                    <td>@item.Title</td>
+                    <td>@item.ImageUrl</td>
+                    <td>@item.Description</td>
+                    <td>@item.Type</td>
+                    <td>
+                        <a href="/Admin/Portfolio/UpdatePortfolio/@item.GalleryId" class="btn btn-success">
+                            <i class="bi bi-pencil"></i>
+                            UPDATE
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/Admin/Portfolio/DeletePortfolio/@item.GalleryId" class="btn btn-danger">
+                            <i class="bi bi-trash"></i>
+                            REMOVE
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,66 @@
+﻿@model About
+@{
+    ViewData["Title"] = "UpdateAbout";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="text-center">
+    <i class="bi bi-info-circle"></i>
+    About Update Page
+</h1>
+<form method="post">
+    <input type="hidden" asp-for="AboutId" />
+    <div class="form-group">
+        @Html.Label("Title")
+        <input type="text" asp-for="Title" class="form-control" />
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Subtitle")
+        <input type="text" asp-for="Subtitle" class="form-control" />
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        @Html.Label("Description1")
+        <textarea cols="30" rows="5" class="form-control" asp-for="Description1"></textarea>
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Description2")
+        <textarea cols="30" rows="5" class="form-control" asp-for="Description2"></textarea>
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Name")
+        <input type="text" asp-for="Name" class="form-control" />
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("City")
+        <input type="text" asp-for="City" class="form-control" />
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Mail")
+        <input type="email" asp-for="Mail" class="form-control" />
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Phone")
+        <input type="tel" asp-for="Phone" class="form-control" />
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("GithubUrl")
+        <input type="url" asp-for="GithubUrl" class="form-control" />
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("LinkedinUrl")
+        <input type="url" asp-for="LinkedinUrl" class="form-control" />
+    </div>
+    <br />
+    <button class="btn btn-primary">Update</button>
+</form>
+

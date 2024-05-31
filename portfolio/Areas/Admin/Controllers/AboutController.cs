@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Abstract;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 namespace portfolio.Areas.Admin.Controllers
@@ -15,7 +16,23 @@ namespace portfolio.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var values = _aboutService.TGetList();
+            return View(values);
         }
+
+        [HttpGet]
+        public IActionResult UpdateAbout(int id)
+        {
+            var values = _aboutService.TGetByID(id);
+            return View(values);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateAbout(About about)
+        {  _aboutService.TUpdate(about);
+            return RedirectToAction("Index");
+        }
+
     }
 }

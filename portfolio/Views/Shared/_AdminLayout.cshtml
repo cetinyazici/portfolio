@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+@await Html.PartialAsync("/Views/AdminLayoutPartial/_HeadAdminPartial.cshtml")
+
+<body>
+
+    <!-- ======= Header ======= -->
+    @await Html.PartialAsync("/Views/AdminLayoutPartial/_HeaderAdminPartial.cshtml")
+    <!-- End Header -->
+    <!-- ======= Sidebar ======= -->
+    @await Html.PartialAsync("/Views/AdminLayoutPartial/_SidebarAdminPartial.cshtml")
+    <!-- End Sidebar-->
+
+    <main id="main" class="main">
+
+        @RenderBody()
+
+    </main>
+    <!-- End #main -->
+    <!-- ======= Footer ======= -->
+    @await Html.PartialAsync("/Views/AdminLayoutPartial/_FooterAdminPartial.cshtml")
+    <!-- End Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    @await Html.PartialAsync("/Views/AdminLayoutPartial/_ScriptsAdminPartial.cshtml")
+
+</body>
+
+</html>

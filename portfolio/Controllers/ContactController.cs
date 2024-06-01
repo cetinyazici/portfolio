@@ -30,7 +30,7 @@ namespace portfolio.Controllers
             {
                 var contactEntity = _mapper.Map<Contact>(model);
                 contactEntity.MessageDate = DateTime.Now;
-                contactEntity.MessageStatus = false;
+                contactEntity.MessageStatus = true;
                 _contactService.TInsert(contactEntity);
                 return RedirectToAction("Index", "Default");
             }

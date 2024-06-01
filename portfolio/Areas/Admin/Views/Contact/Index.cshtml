@@ -1,0 +1,56 @@
+﻿@model List<Contact>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<h1 class="text-center">
+    <i class="bi bi-envelope"></i>
+    Contact Page
+</h1>
+
+<div class="table-responsive mt-5">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Mail</th>
+                <th>Subject</th>
+                <th>MessageBody</th>
+                <th>MessageDate</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                count++;
+                <tr>
+                    <td>@count</td>
+                    <td>@item.Name</td>
+                    <td>@item.Mail</td>
+                    <td>@item.Subject</td>
+                    <td>@item.MessageBody</td>
+                    <td>@(((DateTime)item.MessageDate).ToString("dd-MMM-yyyy"))</td>
+                    <td>
+                        <form method="post" asp-action="UpdateMessageStatus" asp-route-contactId="@item.ContactId">
+                            <button type="submit" class="btn @(item.MessageStatus ? "btn-success" : "btn-danger")" @(item.MessageStatus ? "" : "disabled")>
+                                @if (item.MessageStatus)
+                                {
+                                    <text>Deactivate</text>
+                                }
+                                else
+                                {
+                                    <text>Inactive</text>
+                                }
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

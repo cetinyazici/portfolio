@@ -34,6 +34,7 @@ builder.Services.AddScoped<ISkillsService, SkillsManager>();
 builder.Services.AddScoped<ISummaryService, SummaryManager>();
 builder.Services.AddScoped<IEducationService, EducationManager>();
 builder.Services.AddScoped<IExperienceService, ExperienceManager>();
+builder.Services.AddScoped<ITestimonialService, TestimonialManager>();
 
 // Register data access layers
 builder.Services.AddScoped<IAboutDal, EfAboutDal>();
@@ -46,6 +47,7 @@ builder.Services.AddScoped<ISkillsDal, EfSkillsDal>();
 builder.Services.AddScoped<IExperienceDal, EfExperienceDal>();
 builder.Services.AddScoped<ISummaryDal, EfSummaryDal>();
 builder.Services.AddScoped<IEducationDal, EfEducationDal>();
+builder.Services.AddScoped<ITestimonialDal, EfTestimonialDal>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 

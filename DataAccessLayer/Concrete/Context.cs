@@ -22,5 +22,8 @@ namespace DataAccessLayer.Concrete
         public DbSet<PortfolioDetails> PortfolioDetailss { get; set; }
         public DbSet<Services> Servicess { get; set; }
         public DbSet<Skills> Skillss { get; set; }
+        public DbSet<Summary> Summarys { get; set; }
+        public DbSet<Education> Educations { get; set; }
+        public DbSet<Experience> Experiences { get; set; }
     }
 }

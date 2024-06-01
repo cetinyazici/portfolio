@@ -31,6 +31,9 @@ builder.Services.AddScoped<IPortfolioService, PortfolioManager>();
 builder.Services.AddScoped<IPortfolioDetailsService, PortfolioDetailsManager>();
 builder.Services.AddScoped<IServicesService, ServicesManager>();
 builder.Services.AddScoped<ISkillsService, SkillsManager>();
+builder.Services.AddScoped<ISummaryService, SummaryManager>();
+builder.Services.AddScoped<IEducationService, EducationManager>();
+builder.Services.AddScoped<IExperienceService, ExperienceManager>();
 
 // Register data access layers
 builder.Services.AddScoped<IAboutDal, EfAboutDal>();
@@ -40,6 +43,9 @@ builder.Services.AddScoped<IPortfolioDal, EfPortfolioDal>();
 builder.Services.AddScoped<IPortfolioDetailsDal, EfPortfolioDetailsDal>();
 builder.Services.AddScoped<IServicesDal, EfServicesDal>();
 builder.Services.AddScoped<ISkillsDal, EfSkillsDal>();
+builder.Services.AddScoped<IExperienceDal, EfExperienceDal>();
+builder.Services.AddScoped<ISummaryDal, EfSummaryDal>();
+builder.Services.AddScoped<IEducationDal, EfEducationDal>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 

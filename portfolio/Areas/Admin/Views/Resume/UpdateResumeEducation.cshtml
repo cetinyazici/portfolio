@@ -1,0 +1,43 @@
+﻿@model Education
+@{
+    ViewData["Title"] = "UpdateResumeEducation";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="text-center">
+    <i class="bi bi-briefcase"></i>
+    Update Education Page
+</h1>
+<form method="post">
+    <input type="hidden" asp-for="EducationId" />
+    <div class="form-group">
+        @Html.Label("Degree")
+        <input type="text" asp-for="Degree" class="form-control" />
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Institution")
+        <input type="text" asp-for="Institution" class="form-control" />
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Description")
+        <textarea cols="30" rows="5" class="form-control" asp-for="Description"></textarea>
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("StartYear")
+        <input type="number" asp-for="StartYear" class="form-control" />
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("EndYear")
+        <input type="number" asp-for="EndYear" class="form-control" />
+    </div>
+    <br />
+    <button class="btn btn-primary">
+        <i class="bi bi-save"></i>
+        Update
+    </button>
+</form>
+

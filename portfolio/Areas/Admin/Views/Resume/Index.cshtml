@@ -1,0 +1,157 @@
+﻿@model ResumeViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h1 class="text-center">
+    <i class="bi bi-briefcase"></i>
+    Resume Page
+</h1>
+<div class="container border mt-2">
+    <div class="my-3">
+        <h3>Summary</h3>
+        <a href="/Admin/Resume/AddResumeSummary" class="btn btn-primary">
+            <i class="bi bi-arrow-up"></i>
+            ADD NEW
+        </a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Description</th>
+                    <th>UPDATE</th>
+                    <th>REMOVE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>@Model.Summary.SummaryId</th>
+                    <td>@Model.Summary.Name</td>
+                    <td>@Model.Summary.Address</td>
+                    <td>@Model.Summary.Phone</td>
+                    <td>@Model.Summary.Email</td>
+                    <td>@(Model.Summary.Description.Length > 50 ? Model.Summary.Description.Substring(0, 50) + "..." : Model.Summary.Description)</td>
+                    <td>
+                        <a href="/Admin/Resume/UpdateResumeSummary/@Model.Summary.SummaryId" class="btn btn-success">
+                            <i class="bi bi-pencil"></i>
+                            UPDATE
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/Admin/Resume/DeleteResumeSummary/@Model.Summary.SummaryId" class="btn btn-danger">
+                            <i class="bi bi-trash"></i>
+                            REMOVE
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="container border mt-2">
+    <h3>Education</h3>
+    <div class="my-3">
+        <a href="/Admin/Resume/AddResumeEducation" class="btn btn-primary">
+            <i class="bi bi-arrow-up"></i>
+            ADD NEW
+        </a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Degree</th>
+                    <th>Institution</th>
+                    <th>StartYear</th>
+                    <th>EndYear</th>
+                    <th>Description</th>
+                    <th>UPDATE</th>
+                    <th>REMOVE</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Educations)
+                {
+                    <tr>
+                        <th>@item.EducationId</th>
+                        <td>@item.Degree</td>
+                        <td>@item.Institution</td>
+                        <td>@item.StartYear</td>
+                        <td>@item.EndYear</td>
+                        <td>@(item.Description.Length > 50 ? item.Description.Substring(0, 50) + "..." : item.Description)</td>
+                        <td>
+                            <a href="/Admin/Resume/UpdateResumeEducation/@item.EducationId" class="btn btn-success">
+                                <i class="bi bi-pencil"></i>
+                                UPDATE
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/Admin/Resume/DeleteResumeEducation/@item.EducationId" class="btn btn-danger">
+                                <i class="bi bi-trash"></i>
+                                REMOVE
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="container border mt-2">
+    <div class="my-3">
+        <h3>Experiences</h3>
+        <a href="/Admin/Resume/AddResumeExperiences" class="btn btn-primary">
+            <i class="bi bi-arrow-up"></i>
+            ADD NEW
+        </a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Degree</th>
+                    <th>Institution</th>
+                    <th>StartYear</th>
+                    <th>EndYear</th>
+                    <th>Description</th>
+                    <th>UPDATE</th>
+                    <th>REMOVE</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Experiences)
+                {
+                    <tr>
+                        <th>@item.ExperienceId</th>
+                        <td>@item.Position</td>
+                        <td>@item.Company</td>
+                        <td>@item.StartYear</td>
+                        <td>@item.EndYear</td>
+                        <td>@(item.Description.Length > 50 ? item.Description.Substring(0, 50) + "..." : item.Description)</td>
+                        <td>
+                            <a href="/Admin/Resume/UpdateResumeExperiences/@item.ExperienceId" class="btn btn-success">
+                                <i class="bi bi-pencil"></i>
+                                UPDATE
+                            </a>
+                        </td>
+                        <td>
+                            <a href="/Admin/Resume/DeleteResumeExperiences/@item.ExperienceId" class="btn btn-danger">
+                                <i class="bi bi-trash"></i>
+                                REMOVE
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

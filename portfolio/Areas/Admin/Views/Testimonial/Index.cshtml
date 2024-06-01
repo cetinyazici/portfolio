@@ -1,0 +1,55 @@
+﻿@model List<Testimonial>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h1 class="text-center">
+    <i class="bi bi-chat-left-quote"></i>
+    Testimonial Page
+</h1>
+<div class="my-3">
+    <a href="/Admin/Testimonial/AddTestimonial" class="btn btn-primary">
+        <i class="bi bi-arrow-up"></i>
+        ADD NEW
+    </a>
+</div>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>ProfileImageUrl</th>
+                <th>Text</th>
+                <th>UPDATE</th>
+                <th>REMOVE</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.TestimonialId</td>
+                    <td>@item.Name</td>
+                    <td>@item.Position</td>
+                    <td>@item.ProfileImageUrl</td>
+                    <td>@item.Text</td>
+                    <td>
+                        <a href="/Admin/Testimonial/UpdateTestimonial/@item.TestimonialId" class="btn btn-success">
+                            <i class="bi bi-pencil"></i>
+                            UPDATE
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/Admin/Testimonial/DeleteTestimonial/@item.TestimonialId" class="btn btn-danger">
+                            <i class="bi bi-trash"></i>
+                            REMOVE
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

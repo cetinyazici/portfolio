@@ -1,0 +1,27 @@
+﻿@model Skills
+@{
+    ViewData["Title"] = "AddSkills";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h1 class="text-center">
+    <i class="bi bi-lightbulb"></i>
+    Add Skills Page
+</h1>
+<form method="post">
+    <input type="hidden" asp-for="SkillsId" />
+    <div class="form-group">
+        @Html.Label("SkillsName")
+        <input type="text" asp-for="SkillsName" class="form-control" />
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Description")
+        <input type="text" asp-for="Description" class="form-control" />
+    </div>
+    <br />
+    <button class="btn btn-primary">
+        <i class="bi bi-save"></i>
+        Add
+    </button>
+</form>
+

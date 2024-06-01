@@ -8,7 +8,7 @@
     <i class="bi bi-info-circle"></i>
     About Page
 </h1>
-<div class="text-center my-3">
+<div class="my-3">
     <a href="/Default/Index" target="_blank" class="btn btn-primary">
         <i class="bi bi-globe"></i>
         See on site
@@ -38,9 +38,9 @@
                     <td>@item.City</td>
                     <td>@item.Mail</td>
                     <td>@item.Phone</td>
-                    <td>@item.Subtitle</td>
-                    <td>@item.Description1</td>
-                    <td>@item.Description2</td>
+                    <td>@(item.Subtitle.Length > 50 ? item.Subtitle.Substring(0, 25) + "..." : item.Subtitle)</td>
+                    <td>@(item.Description1.Length > 50 ? item.Description1.Substring(0, 25) + "..." : item.Description1)</td>
+                    <td>@(item.Description2.Length > 50 ? item.Description1.Substring(0, 55) + "..." : item.Description1)</td>
                     <td>
                         <a href="/Admin/About/UpdateAbout/@item.AboutId" class="btn btn-success">
                             <i class="bi bi-pencil"></i>

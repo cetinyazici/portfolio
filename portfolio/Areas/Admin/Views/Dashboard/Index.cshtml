@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Admin
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+    </nav>
+</div>
+<section class="section dashboard">
+    <div class="row">
+        <!-- Left side columns -->
+        <div class="col-lg-8">
+            <div class="row">
+                <!-- Number Of Skills -->
+                @await Component.InvokeAsync("_SkillsCount")
+                <!-- End Number Of Skills -->
+                <!-- Number Of Portfolio -->
+                @await Component.InvokeAsync("_PortfolioCount")
+                <!-- End Number Of Portfolio -->
+                <!-- Number Of Services -->
+                @await Component.InvokeAsync("_ServiceCount")
+                <!-- End Number Of Services -->
+                <!-- Those Who Email Us -->
+                @await Component.InvokeAsync("_Emails")
+                <!-- End Those Who Email Us -->
+            </div>
+        </div>
+        <!-- End Left side columns -->
+        <!-- Right side columns -->
+        <div class="col-lg-4">
+            <!-- Skill List -->
+            @await Component.InvokeAsync("_SkillList")
+            <!--End Skill List -->
+        </div>
+        <!-- End Right side columns -->
+    </div>
+</section>

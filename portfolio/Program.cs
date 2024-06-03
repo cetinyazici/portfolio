@@ -9,8 +9,10 @@ using DToLayer.ContactDtos;
 using EntityLayer.Concrete;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using portfolio.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +37,7 @@ builder.Services.AddScoped<ISummaryService, SummaryManager>();
 builder.Services.AddScoped<IEducationService, EducationManager>();
 builder.Services.AddScoped<IExperienceService, ExperienceManager>();
 builder.Services.AddScoped<ITestimonialService, TestimonialManager>();
+builder.Services.AddScoped<IAppUserService, AppUserManager>();
 
 // Register data access layers
 builder.Services.AddScoped<IAboutDal, EfAboutDal>();
@@ -48,23 +51,41 @@ builder.Services.AddScoped<IExperienceDal, EfExperienceDal>();
 builder.Services.AddScoped<ISummaryDal, EfSummaryDal>();
 builder.Services.AddScoped<IEducationDal, EfEducationDal>();
 builder.Services.AddScoped<ITestimonialDal, EfTestimonialDal>();
+builder.Services.AddScoped<IAppUserDal, EfAppUserDal>();
 
 builder.Services.AddAutoMapper(typeof(Program));
+
+builder.Services.AddIdentity<AppUser, AppRole>(options =>
+{
+    options.Password.RequiredLength = 6;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireUppercase = true;
+})
+.AddEntityFrameworkStores<Context>()
+.AddErrorDescriber<CustomIdentityValidator>()
+.AddTokenProvider<DataProtectorTokenProvider<AppUser>>(TokenOptions.DefaultProvider);
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Account/SignIn/";
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+    options.SlidingExpiration = true;
+});
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (!app.Environment.IsDevelopment()) 
 {
     app.UseExceptionHandler("/Home/Error");
 }
 
 app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404", "?code={0}");
-
+app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

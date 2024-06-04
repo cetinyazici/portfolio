@@ -1,11 +1,13 @@
 ﻿using BusinessLayer.Abstract;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using portfolio.Models;
 
 namespace portfolio.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     [Route("Admin/Resume")]
     public class ResumeController : Controller
     {

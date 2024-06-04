@@ -1,10 +1,12 @@
 ﻿using BusinessLayer.Abstract;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace portfolio.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     [Route("Admin/Testimonial")]
     public class TestimonialController : Controller
     {

@@ -1,0 +1,27 @@
+﻿@model UserInformationDTO
+<div class="tab-pane fade show active profile-overview" id="profile-overview">
+    <h5 class="card-title">About</h5>
+    <p class="small fst-italic">
+        Yazılım dünyasında sürekli öğrenme ve gelişme yolculuğunda ilerliyorum.
+        Gelecekteki hedeflerim arasında yeni teknolojilere hakim olmak ve büyük projelerde yer almak var.
+        İşbirliği ve yenilikçi bir çalışma ortamında bulunmak beni heyecanlandırıyor.
+    </p>
+
+    <h5 class="card-title">Profile Details</h5>
+
+    <div class="row">
+        <div class="col-lg-3 col-md-4 label ">Full Name</div>
+        <div class="col-lg-9 col-md-8">@Model.Name @Model.Surname</div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-md-4 label">Gender</div>
+        <div class="col-lg-9 col-md-8">@Model.Gender</div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-md-4 label">Email</div>
+        <div class="col-lg-9 col-md-8">@Model.Email</div>
+    </div>
+
+</div>

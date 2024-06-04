@@ -1,10 +1,12 @@
 ﻿using BusinessLayer.Abstract;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace portfolio.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     [Route("Admin/About")]
     public class AboutController : Controller
     {
@@ -34,7 +36,8 @@ namespace portfolio.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult UpdateAbout(About about)
-        {  _aboutService.TUpdate(about);
+        {
+            _aboutService.TUpdate(about);
             return RedirectToAction("Index");
         }
 

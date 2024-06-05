@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Abstract;
 using DToLayer.ProfileDtos;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -27,14 +28,18 @@ namespace portfolio.Controllers
                 return NotFound();
             }
 
-            var model = new UserInformationDTO
+            var model = new ProfileViewModel
             {
-                Id = user.Id,
-                ImageUrl = user.ImageUrl,
-                Name = user.Name,
-                Surname = user.Surname,
-                Gender = user.Gender,
-                Email = user.Email
+                UserInformation = new UserInformationDTO
+                {
+                    Id = user.Id,
+                    ImageUrl = user.ImageUrl,
+                    Name = user.Name,
+                    Surname = user.Surname,
+                    Gender = user.Gender,
+                    Email = user.Email
+                },
+                ChangePassword = new ChangePasswordDTO()
             };
 
             return View(model);
@@ -62,15 +67,28 @@ namespace portfolio.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Profile update failed");
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError("", error.Description);
+                        }
                     }
                 }
+                else
+                {
+                    ModelState.AddModelError("", "User not found");
+                }
             }
-
-            return View("Profile", model);
+            var viewModel = new ProfileViewModel
+            {
+                UserInformation = model,
+                ChangePassword = new ChangePasswordDTO()
+            };
+            return View("Profile", viewModel);
         }
 
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ChangePasswordDTO model)
         {
             if (ModelState.IsValid)
@@ -81,15 +99,43 @@ namespace portfolio.Controllers
                     var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Profile");
+                        // Kullanıcı şifre değiştirdikten sonra giriş yapmasını sağlamak için oturumu sonlandırıyoruz.
+                        await _userManager.UpdateSecurityStampAsync(user);
+                        await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);
+
+                        return RedirectToAction("SignIn", "Account");
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Password change failed");
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError("", error.Description);
+                        }
                     }
                 }
+                else
+                {
+                    ModelState.AddModelError("", "User not found");
+                }
             }
-            return View("Profile", model);
+
+            var userForView = await _userManager.GetUserAsync(User);
+
+            var viewModel = new ProfileViewModel
+            {
+                UserInformation = new UserInformationDTO
+                {
+                    Id = userForView.Id,
+                    ImageUrl = userForView.ImageUrl,
+                    Name = userForView.Name,
+                    Surname = userForView.Surname,
+                    Gender = userForView.Gender,
+                    Email = userForView.Email
+                },
+                ChangePassword = model
+            };
+
+            return View("Profile", viewModel);
         }
 
 

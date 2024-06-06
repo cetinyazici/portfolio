@@ -27,7 +27,7 @@ namespace portfolio.Controllers
             {
                 return NotFound();
             }
-
+            
             var model = new ProfileViewModel
             {
                 UserInformation = new UserInformationDTO

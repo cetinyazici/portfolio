@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Portfolio Details";
+    ViewData["Title"] = "Portfolio Detail";
     Layout = null;
 }
 <!DOCTYPE html>
@@ -39,7 +39,7 @@
     <main id="main">
 
         <!-- ======= Portfolio Details Section ======= -->
-        @await Component.InvokeAsync("_PortfolioDetails", new { id = ViewData["id"] })
+        @await Component.InvokeAsync("_PortfolioDetails", new { id = Model })
         <!-- End Portfolio Details Section -->
 
     </main><!-- End #main -->

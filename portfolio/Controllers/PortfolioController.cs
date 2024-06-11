@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Abstract;
 using Microsoft.AspNetCore.Mvc;
+using portfolio.Models;
 
 namespace portfolio.Controllers
 {
@@ -12,10 +13,9 @@ namespace portfolio.Controllers
             _portfolioService = portfolioService;
         }
 
-        public IActionResult PortfolioDetails(int id)
+        public IActionResult PortfolioDetail(int id)
         {
-            ViewData["id"] = id;
-            return View();
+            return View(id);
         }
     }
 }
